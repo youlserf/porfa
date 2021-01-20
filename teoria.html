@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de trabajo</title>
+</head>
+<body>
+    <h1>Desarrollo de Validacion</h1>
+    <form method="POST">
+        <table>
+            <tr>
+                <td>Nombre</td>
+                <td><input type="text" name="nombre" id="nombre"></td>
+            </tr>
+            <tr>
+                <td>telefono</td>
+                <td><input type="number" name="telefono" id="telefono" oninvalid="alert('numero invalido');return false"></td>
+            </tr>
+            <tr>
+                <td>Fecha de Nacimiento</td>
+                <td>
+                    <input type="number" name="dia" id="dia" size="2">
+                    <input type="number" name="mes" id="mes" size="2">
+                    <input type="number" name="año" id="año" size="2">
+                </td>
+            </tr>
+            <tr>
+                <td>Sexo</td>
+                <td>
+                    <input type="radio" name="sexo" value="H">Hombre
+                    <input type="radio" name="sexo" value="M">Mujer
+                </td>
+            </tr>
+            <tr>
+                <td>Mayor a 10 años?</td>
+                <td><input type="checkbox" name="mayor" id="mayora10"></td>
+            </tr>
+        </table>
+        <p>
+            <input type="button" onclick='enviarFormulario()' value="Enviar" class="nav-link" href="envio2.html">
+            <input type="reset" name="" value="Limpiar">
+        </p>
+    </form>
+
+<script>
+function enviarFormulario(){
+    var nombre = document.getElementById('nombre').value;
+    var telefono = document.getElementById('telefono').value;
+    var dia = document.getElementById('dia').value;
+    var mes = document.getElementById('mes').value;
+    var año = document.getElementById('año').value;
+    var mayorde10 = document.getElementById('mayora10').checked;
+    var sexo = document.getElementsByName('sexo')
+    console.log('Enviando Formulario');
+
+    var mensajesError = [];
+    
+    if( nombre == ""){
+        alert('Falta el Nombre');
+    return false;
+    }
+    if( telefono ==""){
+        alert('Falta el telefono');
+    return false;
+    } 
+    if(telefono > 999999999 || telefono < 900000000 )
+        {
+        alert('telefono no aceptable')
+        return false;
+    }
+    if( dia == ""){
+        alert('Falta el dia');
+    return false;
+    }
+    if(dia > 31 || dia < 0 )
+        {
+        alert('Dia no aceptable')
+        return false;
+    }
+    if( mes == ""){
+        alert('Falta el mes');
+    return false;
+    }
+    if(mes > 12 || mes < 0 )
+        {
+        alert('Mes no aceptable')
+        return false;
+    }
+    if( año == ""){
+        alert('Falta el año');
+    return false;
+    }
+    if( año > 2021 || año < 1900 )
+        {
+        alert('Año no aceptable')
+        return false;
+    }
+    if(mayorde10){
+        if(2021-año <= 10)
+        {
+        alert('No es mayor a 10 años')
+    return false;
+    }}else{
+        if(2021-año > 10)
+        {
+        alert('Debe seleccion si es mayor a 10')
+    return false;
+    }
+    }
+    var i = 0; 
+    for(letra=0;letra<sexo.length;letra++){
+    if(sexo[letra].checked){i=1;
+    }  
+    }
+    if(i == 0){
+        alert('No selecciono el sexo')
+    return false;
+    }
+    window.location.href='envio2.html'
+}
+</script>
+</body>
+</html>
